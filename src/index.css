@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+.meme-container {
+  background-color: transparent !important;
+}
+
+@font-face {
+  font-family: 'Sigmar'; 
+  src: url('/fonts/Sigmar/Sigmar-Regular.ttf'); 
+}
+
+.Sigmar {
+  font-family: 'Sigmar', sans-serif; 
+}
+
+@font-face {
+  font-family: 'Truculenta'; 
+  src: url('/fonts/Truculenta/static/Truculenta-Regular.ttf'); 
+}
+
+.Truculenta {
+  font-family: 'Truculenta', sans-serif; 
+}
+
+@font-face {
+  font-family: 'Spwoff'; 
+  src: url('/public/fonts/9d5a263311222317-s.p.woff2'); 
+}
+
+.Spwoff {
+  font-family: 'Spwoff', sans-serif; 
+}
+
+@font-face {
+  font-family: 'Galter', serif; 
+  src: url('/public/fonts/Galter.otf'); 
+}
+
+.Galter {
+  font-family: 'Galter', serif; 
+}
