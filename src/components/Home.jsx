@@ -2,9 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { FaSearch, FaGithub, FaMoon, FaSun } from 'react-icons/fa';
+import { UserButton } from '@clerk/clerk-react';
 import TemplateList from '../components/TemplateList';
 import MemeEditor from '../components/MemeEditor';
-
 
 export default function Home() {
   const [selectedTemplate, setSelectedTemplate] = useState(null);
@@ -43,14 +43,16 @@ export default function Home() {
 
   return (
     <div className={`min-h-screen flex flex-col items-center transition-colors duration-300 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
-
+      
       {/* Header */}
       <header className="w-full max-w-6xl px-6 py-4 flex justify-between items-center">
+        {/* Logo */}
         <div className="flex items-center gap-1 text-2xl font-extrabold">
           <span className="text-black dark:text-white">Meme</span>
           <span className="bg-orange-400 text-white rounded-xl px-3 py-1 text-base">Duniya</span>
         </div>
 
+        {/* Right side icons */}
         <div className="flex items-center gap-4">
           <button
             onClick={toggleDarkMode}
@@ -68,7 +70,7 @@ export default function Home() {
             <FaGithub size={22} />
           </a>
 
-         
+          <UserButton afterSignOutUrl="/" />
         </div>
       </header>
 
@@ -109,6 +111,7 @@ export default function Home() {
         )}
       </main>
 
+      {/* Footer */}
       <footer className="text-center Galter text-sm text-gray-400 dark:text-gray-500 pt-30 pb-3 w-full">
         build with ❤️ by <a href="https://github.com/arijiiiitttt" className="text-blue-500">Arijit</a>
       </footer>
