@@ -1,30 +1,42 @@
 import React from 'react';
-import { SignedIn, SignedOut, SignIn } from '@clerk/clerk-react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './components/Home';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+import ProtectedRoute from './components/ProtectedRoute';
+import { SignedIn, SignedOut } from '@clerk/clerk-react';
 
-function App() {
+const App = () => {
   return (
-    <>
-      <SignedOut>
-        <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
-          <div style={{ maxWidth: '400px', width: '100%', padding: '20px' }}>
-            <SignIn
-              path="/"
-              routing="path"
-              afterSignInUrl="/"
-              afterSignUpUrl="/"
-            />
-          </div>
-        </main>
-      </SignedOut>
-
-      <SignedIn>
-        <main>
-          <Home />
-        </main>
-      </SignedIn>
-    </>
+    <Router>
+      <Routes>
+        {/* Redirect root route based on Clerk auth */}
+        <Route
+          path="/"
+          element={
+            <>
+              <SignedIn>
+                <Navigate to="/home" />
+              </SignedIn>
+              <SignedOut>
+                <Navigate to="/signup" />
+              </SignedOut>
+            </>
+          }
+        />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Signin />} />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;

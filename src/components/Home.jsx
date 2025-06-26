@@ -62,7 +62,7 @@ export default function Home() {
           </button>
 
           <a
-            href="https://github.com/arijiiiitttt/memehub"
+            href="https://github.com/arijiiiitttt/meme-duniya"
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-gray-700 dark:text-gray-300 transition"

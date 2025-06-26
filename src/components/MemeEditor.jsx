@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useRef } from 'react';
 import domtoimage from 'dom-to-image';
 
@@ -28,7 +28,7 @@ function MemeEditor({ template, onBack }) {
   const handleDownload = async () => {
     if (!memeRef.current) return;
     try {
-      const dataUrl = await domtoimage.toPng(memeRef.current, { bgcolor: 'transparent' }); // Add bgcolor option
+      const dataUrl = await domtoimage.toPng(memeRef.current, { bgcolor: 'transparent' });
       const link = document.createElement('a');
       link.href = dataUrl;
       link.download = 'meme.png';
@@ -47,18 +47,18 @@ function MemeEditor({ template, onBack }) {
         onClick={onBack}
         className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-3 rounded-full mb-6 shadow transition-all"
       >
-         Back to Templates
+        Back to Templates
       </button>
 
       {/* Meme Container */}
       <div
         ref={memeRef}
-        className="relative w-full max-w-3xl h-[500px]  rounded-lg overflow-hidden"
+        className="relative w-full max-w-3xl h-[500px] rounded-lg overflow-hidden"
       >
         <img
           src={template.imageUrl}
           alt={template.name}
-          className="w-full h-full object-contain" 
+          className="w-full h-full object-contain"
         />
 
         {texts.map((t) => (
@@ -108,43 +108,53 @@ function MemeEditor({ template, onBack }) {
       </div>
 
       {/* Controls */}
-      <div className="mt-8 w-full max-w-2xl flex flex-col gap-4">
-        <div className="flex flex-wrap gap-4 items-center">
+      <div className="mt-8 w-full max-w-2xl flex flex-col gap-6">
+        <div className="flex flex-wrap items-center justify-center gap-4">
+
+          {/* Input Text */}
           <input
             type="text"
             placeholder="Enter text or emoji 😎"
-            className="flex-grow px-4 py-2 rounded border shadow"
+            className="flex-grow min-w-[200px] px-4 py-2 rounded-md border shadow focus:outline-none"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
-          <input
-            type="color"
-            value={textColor}
-            onChange={(e) => setTextColor(e.target.value)}
-            className="h-10 w-10 rounded-full content-fit border shadow"
-            title="Pick text color"
-          />
+
+          <label className="relative">
+            <input
+              type="color"
+              value={textColor}
+              onChange={(e) => setTextColor(e.target.value)}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+            <div
+              className="h-10 w-10 rounded-full border-2 border-gray-300 shadow"
+              style={{ backgroundColor: textColor }}
+              title="Pick text color"
+            ></div>
+          </label>
+
           <input
             type="range"
             min={12}
             max={64}
             value={fontSize}
             onChange={(e) => setFontSize(Number(e.target.value))}
-            className="w-24"
+            className="w-24 cursor-pointer"
             title="Font Size"
           />
+
           <span className="text-sm text-gray-700">{fontSize}px</span>
           <button
             onClick={handleAddText}
-            className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-3 rounded-full mb-6 shadow transition-all"
+            className="bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-full shadow transition-all"
           >
             Add
           </button>
         </div>
-
         <button
           onClick={handleDownload}
-          className="bg-red-600 hover:bg-red-700 text-white font-semibold self-center py-2 px-3 rounded-full mb-6 shadow transition-all"
+          className="bg-red-600 hover:bg-red-700 text-white font-semibold self-center py-2 px-6 rounded-full shadow-md transition-all"
         >
           Download Meme
         </button>
