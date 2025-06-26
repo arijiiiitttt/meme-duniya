@@ -115,7 +115,7 @@ function MemeEditor({ template, onBack }) {
           <input
             type="text"
             placeholder="Enter text or emoji 😎"
-            className="flex-grow min-w-[200px] px-4 py-2 rounded-md border shadow focus:outline-none"
+            className="flex-grow min-w-[200px] px-4 py-2 rounded-md border border-gray-300 shadow focus:outline-none"
             value={inputText}
             onChange={(e) => setInputText(e.target.value)}
           />
